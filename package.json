@@ -1,0 +1,43 @@
+{
+  "name": "football-manager",
+  "version": "1.0.0",
+  "description": "Football Manager API",
+  "type": "module",
+  "main": "app.js",
+  "devDependencies": {
+    "nodemon": "2.0.20",
+    "mocha": "10.2.0",
+    "chai": "4.3.7",
+    "supertest": "3.4.2",
+    "nyc": "15.1.0",
+    "morgan": "1.10.0"
+  },
+  "dependencies": {
+    "express": "4.18.2",
+    "knex": "2.4.2",
+    "mysql": "2.18.1",
+    "mysql2": "3.2.0",
+    "body-parser": "1.20.2",
+    "ajv": "8.12.0",
+    "ajv-formats": "2.1.1",
+    "moment-timezone": "0.5.43",
+    "moment": "2.29.4",
+    "cors": "2.8.5",
+    "bcrypt": "5.1.1",
+    "jsonwebtoken": "9.0.2"
+  },
+  "scripts": {
+    "start": "nodemon app.js",
+    "migrate:up": "knex migrate:latest --esm --knexfile knexfile.cjs --env ${env:-development} ",
+    "migrate:down": "knex migrate:down --esm --knexfile knexfile.cjs --env ${env:-development} ",
+    "migrate:list": "knex migrate:list --esm --knexfile knexfile.cjs --env ${env:-development} ",
+    "migrate:rollback": "knex migrate:rollback --esm --knexfile knexfile.cjs --env ${env:-development}",
+    "migrate:make": "knex migrate:make ${name} --esm --knexfile knexfile.cjs --env ${env:-development}",
+    "migrate:up:test": "knex migrate:latest --esm --knexfile knexfile.cjs --env test",
+    "migrate:down:test": "knex migrate:down --esm --knexfile knexfile.cjs --env test",
+    "migrate:rollback:test": "knex migrate:rollback --esm --knexfile knexfile.cjs --env test",
+    "test": "npm run migrate:up:test && nyc --reporter=lcov mocha --recursive --exit tests/ -t 30000 && npm run migrate:down:test"
+  },
+  "author": "Issam Olwan",
+  "license": "ISC"
+}

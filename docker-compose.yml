@@ -1,0 +1,12 @@
+version: '2'
+services:
+  node:
+    build: ./
+    restart: always
+    container_name: football-manager-be
+    volumes:
+      - ./lib:/app/lib
+      - ./migrations:/app/migrations
+      - ./tests:/app/tests
+    ports:
+      - "4000:4000"
