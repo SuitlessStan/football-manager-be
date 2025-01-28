@@ -7,7 +7,7 @@ services:
       [
         '--character-set-server=utf8mb4',
         '--collation-server=utf8mb4_general_ci',
-        '--sort_buffer_size=1073741824'
+        '--sort_buffer_size=1073741824',
       ]
     environment:
       - MYSQL_DATABASE=${mysql_database}
@@ -19,6 +19,7 @@ services:
     volumes:
       - "./data/db/mysql:/var/lib/mysql"
       - "./etc/mysql:/etc/mysql/conf.d"
+      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
   myadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
